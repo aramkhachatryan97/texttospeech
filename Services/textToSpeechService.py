@@ -14,7 +14,7 @@ def speak_from_text(options) -> bytes:
 
     return response.audio_content
 
-def get_supported_options() -> list:
+def get_supported_options() -> dict:
     response = client.list_voices()
     voices = {}
     types = []

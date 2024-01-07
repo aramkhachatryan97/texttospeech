@@ -31,7 +31,7 @@
             <div class="p-10 pb-0 w-full flex">
                 <div class="w-1/2  flex flex-col">
                     <div class="w-full px-5">
-                        <label for="locale" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                        <label for="locale" class="block mb-2 text-sm font-medium  text-white">
                             Language / Locale </label>
                         <select id="locale" required name="locale"
                                 class=" border border-gray-300 text-gray text-sm rounded-lg  block w-full p-2.5 ">
@@ -42,7 +42,7 @@
                         </select>
                     </div>
                     <div class="w-full px-5 mt-5">
-                        <label for="voice_type" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Voice
+                        <label for="voice_type" class="block mb-2 text-sm font-medium text-white">Voice
                             Type</label>
                         <select id="voice_type" required name="voice_type"
                                 class=" border border-gray-300 text-gray text-sm rounded-lg  block w-full p-2.5 ">
@@ -56,7 +56,7 @@
                 <div class="w-1/2  flex flex-col">
                     <div class="w-full px-5">
                         <label for="device_profile"
-                               class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Audio Device
+                               class="block mb-2 text-sm font-medium text-white">Audio Device
                             Profile </label>
                         <select id="device_profile" required name="device_profile"
                                 class=" border border-gray-300 text-gray text-sm rounded-lg  block w-full p-2.5 ">
@@ -73,7 +73,7 @@
                         </select>
                     </div>
                     <div class="w-full px-5 mt-5">
-                        <label for="voice_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Voice
+                        <label for="voice_name" class="block mb-2 text-sm font-medium  text-white">Voice
                             Name</label>
                         <select id="voice_name" required name="voice_name"
                                 class=" border border-gray-300 text-gray text-sm rounded-lg  block w-full p-2.5 ">
@@ -84,22 +84,22 @@
             </div>
             <div class="w-full px-10 pt-5 pb-10 flex">
                 <div class="w-1/2 px-5">
-                    <label for="speed" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Speed (
+                    <label for="speed" class="block mb-2 text-sm font-medium text-white">Speed (
                         <span class="font-bold speed-info-block"> 1 </span> )</label>
                     <input id="speed" name="speed" required type="range" min="0.25" max="4" value="1" step="0.01"
-                           class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700">
+                           class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer ">
                 </div>
                 <div class="w-1/2 px-5 ">
-                    <label for="pitch" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Pitch (
+                    <label for="pitch" class="block mb-2 text-sm font-medium text-white">Pitch (
                         <span class="font-bold pitch-info-block"> 0 </span> )</label>
                     <input id="pitch" name="pitch" required type="range" min="-20" max="20" value="0" step="0.01"
-                           class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700">
+                           class="w-full h-2  rounded-lg appearance-none cursor-pointer ">
                 </div>
             </div>
             <div class="px-5 w-full">
                 <div class="w-full px-10 pb-10 flex flex-col">
 
-                    <label for="message" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Write Your
+                    <label for="message" class="block mb-2 text-sm font-medium text-white">Write Your
                         Text</label>
                     <textarea id="message" required name="text" rows="4"
                               class="block p-2.5 w-full text-sm text-black rounded-lg border "
