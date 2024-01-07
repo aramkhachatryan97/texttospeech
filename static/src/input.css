@@ -1,0 +1,38 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.w-100 {
+    width: 100px;
+}
+.m-height-100vh {
+    min-height: 100vh;
+}
+.left-to-right-blu-gradient {
+    background: linear-gradient(to right, #003870, #003870, #4a85ff);
+}
+.margin-0 {
+    margin: 0 !important;
+}
+
+select {
+    outline: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+option {
+    color: black !important;
+    font-width:  bold;
+}
+option:disabled {
+    color: gray !important;
+    opacity: 0.5;
+}
+audio::-webkit-media-controls-play-button,
+audio::-webkit-media-controls-panel {
+    background-color: gray;
+    color: gray;
+}
+.w-120p {
+    width: 120px !important;
+}

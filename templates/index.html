@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text to Speech</title>
+    <link rel="icon" href="{{url_for('static', filename='/images/favicon.png')}}" sizes="32x32">
+    <link rel="stylesheet" href="{{url_for('static',filename='dist/css/output.css')}}">
+    <script src="{{ url_for('static', filename='src/js/jquery.min.js') }}"></script>
+    <script type="text/javascript">
+        window.options_json = "{{options.voices}}"
+        window.options_json = JSON.parse(options_json.replaceAll('&#39;', '"'))
+    </script>
+    <script src="{{ url_for('static', filename='src/js/main.js') }}"></script>
+    <title>Title</title>
+</head>
+<body class="m-height-100vh flex flex-col">
+{% extends "layout.html" %}
+
+{% block content %}
+
+<div class="w-full px-6 flex-1">
+    <div class="mt-20 relative rounded-lg bg-purple container mx-auto flex flex-col items-center  ">
+        <div class="w-11/12 sm:w-2/3 mb-5 sm:mb-10">
+            <h1 class="text-base sm:text-2 md:text-3xl xl:text-4xl text-center text-blue font-bold leading-tight">
+                Be free to choose any option. <span class="text-blue-light">Try more and you will find the best solution for you.</span>
+            </h1>
+        </div>
+        <form id="options-form" class="flex flex-col justify-center items-center mb-10 sm:mb-20 w-full rounded-lg left-to-right-blu-gradient">
+            <div class="p-10 pb-0 w-full flex">
+                <div class="w-1/2  flex flex-col">
+                    <div class="w-full px-5">
+                        <label for="locale" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                            Language / Locale </label>
+                        <select id="locale" required name="locale"
+                                class=" border border-gray-300 text-gray text-sm rounded-lg  block w-full p-2.5 ">
+                            <option value="">Select Language</option>
+                            {% for key in options.voices %}
+                                <option value="{{key}}">{{options.voices[key][0]['locale_display_name']}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="w-full px-5 mt-5">
+                        <label for="voice_type" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Voice
+                            Type</label>
+                        <select id="voice_type" required name="voice_type"
+                                class=" border border-gray-300 text-gray text-sm rounded-lg  block w-full p-2.5 ">
+                            <option value="">Select Voice Type</option>
+                            {% for type in options.types %}
+                            <option value="{{type}}">{{ type }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                <div class="w-1/2  flex flex-col">
+                    <div class="w-full px-5">
+                        <label for="device_profile"
+                               class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Audio Device
+                            Profile </label>
+                        <select id="device_profile" required name="device_profile"
+                                class=" border border-gray-300 text-gray text-sm rounded-lg  block w-full p-2.5 ">
+                            <option value="wearable-class-device" selected>Smart watch or wearable</option>
+                            <option value="handset-class-device">Smartphone</option>
+                            <option value="headphone-class-device">Headphones or earbuds</option>
+                            <option value="small-bluetooth-speaker-class-device">Small home speaker</option>
+                            <option value="medium-bluetooth-speaker-class-device">Smart home speaker</option>
+                            <option value="large-home-entertainment-class-device">Home entertainment system or smart
+                                TV
+                            </option>
+                            <option value="large-automotive-class-device">Car Speaker</option>
+                            <option value="telephony-class-application">Interactive voice Response (IVR) system</option>
+                        </select>
+                    </div>
+                    <div class="w-full px-5 mt-5">
+                        <label for="voice_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Voice
+                            Name</label>
+                        <select id="voice_name" required name="voice_name"
+                                class=" border border-gray-300 text-gray text-sm rounded-lg  block w-full p-2.5 ">
+                            <option value="">Select Voice Name (select language and type at first)</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="w-full px-10 pt-5 pb-10 flex">
+                <div class="w-1/2 px-5">
+                    <label for="speed" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Speed (
+                        <span class="font-bold speed-info-block"> 1 </span> )</label>
+                    <input id="speed" name="speed" required type="range" min="0.25" max="4" value="1" step="0.01"
+                           class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700">
+                </div>
+                <div class="w-1/2 px-5 ">
+                    <label for="pitch" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Pitch (
+                        <span class="font-bold pitch-info-block"> 0 </span> )</label>
+                    <input id="pitch" name="pitch" required type="range" min="-20" max="20" value="0" step="0.01"
+                           class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700">
+                </div>
+            </div>
+            <div class="px-5 w-full">
+                <div class="w-full px-10 pb-10 flex flex-col">
+
+                    <label for="message" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Write Your
+                        Text</label>
+                    <textarea id="message" required name="text" rows="4"
+                              class="block p-2.5 w-full text-sm text-black rounded-lg border "
+                              placeholder="Write your text here..."></textarea>
+                </div>
+            </div>
+            <div id="player"></div>
+            <button type="submit" class="border px-10 mb-5 rounded-lg text-white py-2 border-white">Try</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
+</body>
+</html>
