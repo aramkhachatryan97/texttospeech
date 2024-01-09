@@ -14,7 +14,7 @@ def text_to_speech_options():
 
     return render_template('index.html', options = options)
 
-@app.route("/test", methods=['POST'])
+@app.route("/generate-speech", methods=['POST'])
 def run_text_to_speech():
     audio_content = speak_from_text(request.get_json())
 
