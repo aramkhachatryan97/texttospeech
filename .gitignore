@@ -154,7 +154,7 @@ dmypy.json
 
 #dist
 /static/dist
-/static/player
+/static/player/*
 
 # pytype static type analyzer
 .pytype/
